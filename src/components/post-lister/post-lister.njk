@@ -2,7 +2,7 @@
 tags: precache
 ---
 {% set template %}
-<form class="flex">
+<form class="flex wrap">
     <label class="tag">
         <span >all</span>
         <input type="checkbox" name="post" value="all" checked>
@@ -29,6 +29,9 @@ tags: precache
 <link rel="stylesheet" href="/css/main.css">
 <style>
     :host{
+        display: flex;
+        flex-direction: column;
+        gap: var(--site-gap);
     }
     ul{
         --site-gap: 0;

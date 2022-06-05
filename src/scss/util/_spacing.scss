@@ -1,6 +1,9 @@
 [class*="flex"] {
   display: flex;
   gap: var(--site-gap);
+  &[class*="wrap"] {
+    flex-wrap: wrap;
+  }
 }
 .flex-col {
   flex-direction: column;

@@ -12,6 +12,7 @@ main {
   overflow: hidden;
 }
 html {
+  -webkit-tap-highlight-color: transparent;
   // background-color: hsl(var(--col-blk));
   // padding: var(--site-padding);
 }
