@@ -9,13 +9,7 @@ const uui = () => `${randomId()}-${randomId()}`;
 
 /** @param {import('@11ty/eleventy/src/UserConfig')} config */
 module.exports = config => {
-  config.setServerOptions({
-    https: {
-      cert: "/Users/marcusaldrin/work/templates/11ty/cert/cert.pem",
-      key: "/Users/marcusaldrin/work/templates/11ty/cert/key.pem",
-    },
-  });
-
+  console.log(process.env.NODE_ENV)
   if (process.env.NODE_ENV === "production") {
     config.addTransform("htmlmin", async (content, outputPath) => {
       if (outputPath && outputPath.endsWith(".html")) {
@@ -47,12 +41,18 @@ module.exports = config => {
       },
     });
   } else {
+    config.setServerOptions({
+      https: {
+        cert: "/Users/marcusaldrin/work/templates/11ty/cert/cert.pem",
+        key: "/Users/marcusaldrin/work/templates/11ty/cert/key.pem",
+      },
+    });
     config.addPassthroughCopy("./src/js/");
-    config.addWatchTarget('./src/components/**/*.js')
+    config.addWatchTarget("./src/components/**/*.js");
   }
 
   config.addPassthroughCopy("./src/css/");
-  config.addPassthroughCopy({'./static':"/assets"})
+  config.addPassthroughCopy({ "./static": "/assets" });
 
   // config.addPassthroughCopy("./src/_sw.js");
   config.addCollection("pages", collectionsApi => {
