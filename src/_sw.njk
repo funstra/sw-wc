@@ -1,0 +1,23 @@
+---
+permalink: /_sw.js
+eleventyExcludeFromCollections: true
+---
+{%- set precache -%}{%- for cache in collections.precache -%}"{{cache.url}}"{{"," if not loop.last}}{%- endfor -%}{% endset %}
+{% set fontDir = "/assets/fonts/scp/"%}
+{%- set fonts -%}
+"{{fontDir}}source-code-pro-v21-latin-300.woff",
+"{{fontDir}}source-code-pro-v21-latin-300.woff2",
+"{{fontDir}}source-code-pro-v21-latin-regular.woff",
+"{{fontDir}}source-code-pro-v21-latin-regular.woff2"
+{%- endset -%}
+{%- set css -%}"/css/main.css"{%- endset -%}
+{%- set js -%}"/js/rooter.js"{%- endset -%}
+{%- set cache -%}[{{precache | safe}},{{fonts | safe}},{{css | safe}},{{js |safe}}]{%- endset -%}
+
+// hash : {% hash %}
+const resourcesToPrecache = {{cache | safe}};
+{% set js -%}
+{% include "_sw.js" %}
+{%- endset -%}
+
+{{ js | jsmin | safe }}

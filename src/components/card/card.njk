@@ -1,0 +1,11 @@
+{% set template %}
+<h2>Cool</h2>
+<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus pariatur nemo voluptates, et fuga temporibus sapiente!</p>
+{% endset %}
+{% set style %}
+<link rel="stylesheet" href="/css/main.css">
+<style></style>
+{% endset %}
+const HTML = `{{template | safe}}{{style | safe}}`
+
+{% include "./_card.js" %}

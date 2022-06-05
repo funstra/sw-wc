@@ -1,0 +1,60 @@
+---
+tags: precache
+---
+{% set template %}
+<form class="flex">
+    <label class="tag">
+        <span >all</span>
+        <input type="checkbox" name="post" value="all" checked>
+    </label>
+    <label class="tag">
+        <span>design</span>
+        <input type="checkbox" name="post" value="design">
+    </label>
+    <label class="tag">
+        <input type="checkbox" name="post" value="web">
+        <span>web</span>
+    </label>
+    <label class="tag">
+        <input type="checkbox" name="post" value="touchdesigner">
+        <span>touchdesigner</span>
+    </label>
+</form>
+<ul class="flex-col">
+    <slot></slot>
+</ul>
+{% endset %}
+
+{% set style %}
+<link rel="stylesheet" href="/css/main.css">
+<style>
+    :host{
+    }
+    ul{
+        --site-gap: 0;
+    }
+    form{
+        gap: var(--site-gap);
+    }
+    ::slotted(li) {
+
+        display: block;
+        transition-property: height,opacity;
+        transition-duration: 75ms;
+        transition-delay: 0ms;
+        height: 2.5ex;
+        /* background-color: red; */
+    }
+    ::slotted(ul li){
+        margin-bottom: var(--site-gap,10px) !important;
+    }
+    ::slotted(li.closed) {
+        opacity: 0;
+        height: 0px;
+    }
+</style>
+{% endset %}
+
+const HTML = `{{template | safe}}{{style | safe}}`
+
+{% include "./_post-lister-logic.js" %}

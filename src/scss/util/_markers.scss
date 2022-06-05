@@ -1,0 +1,10 @@
+.tag{
+    padding: var(--space-3xs) var(--space-2xs);
+    background-color: hsl(var(--col-primary));
+    border-radius: var(--site-rxy);
+    font-size: var(--step--1);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: var(--site-gap);
+}

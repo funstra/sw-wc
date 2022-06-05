@@ -1,0 +1,7 @@
+[class*="flex"] {
+  display: flex;
+  gap: var(--site-gap);
+}
+.flex-col {
+  flex-direction: column;
+}

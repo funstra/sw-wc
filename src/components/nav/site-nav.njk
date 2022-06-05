@@ -1,0 +1,46 @@
+---
+tags: precache
+---
+{% set template %}
+<ul class="flex">
+    {% for link in collections.topNav %}
+        <li>
+            <a href="{{link.url}}">{{link.data.title or link.fileSlug}}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endset %}
+
+{% set style %}
+<link rel="stylesheet" href="/css/main.css">
+<style>
+    :host {
+        z-index: 1000;
+        display: block;
+    }
+    li a {
+        text-transform: uppercase;
+        font-weight: 400;
+        padding: calc(var(--site-padding)/4) calc(var(--site-padding)/2);
+    }
+    ul {
+        flex-direction: column;
+    }
+    @media (min-width:512px) {
+        ul {
+            flex-direction: row;
+        }
+    }
+    :host(.navigating) ul {
+    }
+
+    ul {}
+</style>
+{% endset %}
+
+const HTML = `{{template | safe}}{{style | safe}}`
+
+{% set js %}
+{% include "./_script.js" %}
+{% endset %}
+{{ js | jsmin | safe }}

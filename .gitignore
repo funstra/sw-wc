@@ -1,0 +1,7 @@
+node_modules
+.vscode
+_site
+.DS_Store
+# Local Netlify folder
+.netlify
+netlify/edge-functions/_generated

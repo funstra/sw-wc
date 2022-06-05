@@ -1,0 +1,45 @@
+<script>
+  function showUpdateAvailable() {
+    document.body.classList.add('blur')
+    document.querySelector("#update-sw").style.display = "block";
+  }
+  const registerServiceWorker = async () => {
+    if ("serviceWorker" in navigator) {
+      try {
+        const registration = await navigator.serviceWorker.register("/_sw.js", {
+          scope: "/",
+        });
+        if (registration.waiting) {
+          console.log("Service worker installed");
+          showUpdateAvailable();
+        } else {
+          registration.addEventListener("updatefound", () => {
+            console.log("new updates");
+            const newWorker = registration.installing;
+            newWorker.addEventListener("statechange", () => {
+              if (newWorker.state === "installed") {
+                showUpdateAvailable();
+              }
+            });
+          });
+        }
+        // if (registration.installing) {
+        //   console.log("Service worker installing");
+        // } else if (registration.waiting) {
+        //   console.log("Service worker installed");
+        //   showUpdateAvailable();
+        // } else if (registration.active) {
+        //   console.log("Service worker active");
+        // }
+
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          console.log("changed!");
+          location.reload();
+        });
+      } catch (error) {
+        console.error(`Registration failed with ${error}`);
+      }
+    }
+  };
+  registerServiceWorker();
+</script>

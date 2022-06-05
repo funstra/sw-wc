@@ -1,0 +1,19 @@
+{
+    "scripts": {
+        "dev:sass-main": "sass  --no-source-map -w src/scss/main.scss src/css/main.css",
+        "dev:11ty": "npx @11ty/eleventy --incremental --serve",
+        "dev": "NODE_ENV=development concurrently npm:dev:*",
+        "build:sass-main": "sass  --no-source-map --style compressed src/scss/main.scss src/css/main.css",
+        "build:sass-components": "sass --no-source-map --style compressed src/scss/_components:src/css/components/",
+        "build:11ty": "npx @11ty/eleventy",
+        "build": "NODE_ENV=production concurrently npm:build:*"
+    },
+    "dependencies": {
+        "@11ty/eleventy": "^2.0.0-canary.11",
+        "html-minifier-terser": "7.0.0-alpha.2",
+        "sass": "^1.52.1",
+        "concurrently": "7.2.1",
+        "csso": "^5.0.3",
+        "terser": "^5.13.1"
+    }
+}

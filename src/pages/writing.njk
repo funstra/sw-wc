@@ -1,0 +1,16 @@
+---
+pageOrder: 1
+title: w
+tags: topNav
+prefetchs: writingPosts
+---
+
+<post-lister filter="">
+    {% for post in collections.writingPosts %}
+        <li data-post-tags="{{post.data.postTags}}">
+            <a href="{{post.url}}">{{post.fileSlug}}</a>
+        </li>
+    {% endfor %}
+</post-lister>
+{# <ul class="flex-col">
+</ul> #}
